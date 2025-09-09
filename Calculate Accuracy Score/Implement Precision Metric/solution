@@ -1,0 +1,10 @@
+import numpy as np
+def precision(y_true, y_pred):
+	# Your code here
+    tp=fp=0
+	for i,j in zip(y_true,y_pred):
+        if i==1 and j==1:
+            tp=tp+1
+        elif i==0 and j==1:
+            fp=fp+1
+    return tp/(tp+fp)
