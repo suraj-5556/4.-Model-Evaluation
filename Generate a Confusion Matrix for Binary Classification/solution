@@ -1,0 +1,8 @@
+
+from collections import Counter
+
+def confusion_matrix(data):
+	# Implement the function here
+    count=Counter(tuple(x) for x in data)
+    
+    return [[count[(1,1)],count[(1,0)]],[[count[(0,1)],count[(0,0)]]]]
