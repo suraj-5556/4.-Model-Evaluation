@@ -1,0 +1,27 @@
+import numpy as np
+
+def f_score(y_true, y_pred, beta):
+	"""
+	Calculate F-Score for a binary classification task.
+
+	:param y_true: Numpy array of true labels
+	:param y_pred: Numpy array of predicted labels
+	:param beta: The weight of precision in the harmonic mean
+	:return: F-Score rounded to three decimal places
+	"""
+    tp=ft=0
+    for i,j in zip(y_true,y_pred):
+        if i==1 and j==1:
+            tp=tp+1
+        elif i==0 and j==1:
+            ft=ft+1
+    p=tp/(tp+ft)
+    x=y=0
+    for i in range (0,len(y_true)):
+        if y_true[i]==1:
+            x=x+1
+            if y_pred[i]==1:
+                y=y+1
+    r=y/x
+    f=(1+beta**2)*((p*r)/(beta*beta*p+r))
+    return round(f,3)
