@@ -1,0 +1,22 @@
+
+def performance_metrics(actual: list[int], predicted: list[int]) -> tuple:
+	# Implement your code here
+    tp=tn=fp=fn=0
+    for i,j in zip(actual,predicted):
+        if i==1 and j==1:
+            tp=tp+1
+        elif i==1 and j==0:
+            fn=fn+1
+        elif i==0 and j==1:
+            fp=fp+1
+        else:
+            tn=tn+1
+    confusion_matrix=[[tp,fn],[fp,tn]]
+    accuracy=(tp+tn)/(tp+tn+fp+fn)
+    p=tp/(tp+fp)
+    r=tp/(tp+fn)
+    f1=2*((p*r)/(p+r))
+    specificity=tn/(tn+fp)
+    negativePredictive=tn/(tn+fn)
+
+	return confusion_matrix, round(accuracy, 3), round(f1, 3), round(specificity, 3), round(negativePredictive, 3)
